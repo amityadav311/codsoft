@@ -1,0 +1,31 @@
+.menu-bg{
+  background-color: #9731e0;
+}
+.menu{
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 15px 0;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+}
+.menu a{
+  color: #0e0404;
+}
+.menu-logo a{
+  font-size: 2.25em;
+  font-weight: bold;
+  margin: 0 10px;
+}
+.menu-nav ul{
+  display: flex;
+  flex-wrap: wrap;
+}
+.menu-nav a{
+  font-size: 1.25em;
+  padding: 10px;
+}
+.menu-nav a:hover{
+  color: #eeeaef;
+}

@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        .calculator {
+            width: 200px;
+            margin: 40px auto;
+            padding: 20px;
+            border: 1px solid #6fd6f8;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .display {
+            width: 100%;
+            height: 40px;
+            padding: 10px;
+            padding-right: 10px;
+            font-size: 24px;
+            text-align: right;
+            border: none;
+            border-radius: 5px;
+            background-color: #eef1ea;
+        }
+        .buttons {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 10px;
+        }
+        .button {
+            width: 100%;
+            height: 40px;
+            padding: 10px;
+            font-size: 18px;
+            border: none;
+            border-radius: 5px;
+            background-color: #f2f2f2;
+            cursor: pointer;
+        }
+        .button:hover {
+            background-color: #f12424;
+        }
+    </style>
+</head>
+<body>
+    <div class="calculator">
+        <input type="text" class="display" id="display" readonly>
+        <div class="buttons">
+            <button class="button" value="7">7</button>
+            <button class="button" value="8">8</button>
+            <button class="button" value="9">9</button>
+            <button class="button" value="/">/</button>
+            <button class="button" value="4">4</button>
+            <button class="button" value="5">5</button>
+            <button class="button" value="6">6</button>
+            <button class="button" value="*">*</button>
+            <button class="button" value="1">1</button>
+            <button class="button" value="2">2</button>
+            <button class="button" value="3">3</button>
+            <button class="button" value="-">-</button>
+            <button class="button" value="0">0</button>
+            <button class="button" value=".">.</button>
+            <button class="button" value="+">+</button>
+            <button class="button" value="=">=</button>
+            <button class="button" value="C">C</button>
+        </div>
+    </div>
+
+    <script>
+        const display = document.getElementById('display');
+        let currentOperand = '';
+        let previousOperand = '';
+        let operation = null;
+
+        document.querySelectorAll('.button').forEach(button => {
+            button.addEventListener('click', () => {
+                const value = button.getAttribute('value');
+
+                if (value === 'C') {
+                    clear();
+                } else if (value === '=') {
+                    calculate();
+                } else if (value === '+' || value === '-' || value === '*' || value === '/') {
+                    setOperation(value);
+                } else {
+                    appendNumber(value);
+                }
+            });
+        });
+
+        function appendNumber(number) {
+            if (number === '.' && currentOperand.includes('.')) return;
+            currentOperand += number;
+            display.value = currentOperand;
+        }
+
+        function setOperation(operator) {
+            if (currentOperand === '') return;
+            if (previousOperand !== '') calculate();
+            operation = operator;
+            previousOperand = currentOperand;
+            currentOperand = '';
+            display.value = previousOperand + ' ' + operator;
+        }
+
+        function calculate() {
+            let resultValue;
+            const prev = parseFloat(previousOperand);
+            const curr = parseFloat(currentOperand);
+
+            switch (operation) {
+                case '+':
+                    resultValue = prev + curr;
+                    break;
+                case '-':
+                    resultValue = prev - curr;
+                    break;
+                case '*':
+                    resultValue = prev * curr;
+                    break;
+                case '/':
+                    resultValue = prev / curr;
+                    break;
+                default:
+                    return;
+            }
+
+            currentOperand = resultValue;
+            operation = null;
+            previousOperand = '';
+            display.value = currentOperand;
+        }
+
+        function clear() {
+            currentOperand = '';
+            previousOperand = '';
+            operation = null;
+            display.value = '';
+        }
+    </script>
+</body>
+</html>

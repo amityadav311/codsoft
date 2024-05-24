@@ -1,0 +1,46 @@
+@import './global/reset.css';
+@import './parts/superinfor.css';
+@import './parts/menu.css';
+@import './parts/newsletter.css';
+
+.icons i {
+    margin: 0 5px;
+}
+.card .card-img-overlay {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.card .info {
+    color: white;
+    text-align: center;
+    position: relative;
+    font-size: 32px;
+    font-weight: 900;
+};
+
+.btnx {
+    size: 2330px;
+}
+.servies-style {
+    
+    width: 80%;
+    position:relative;
+    left: 10%;
+}
+.service-title {
+    color: black;
+    font-size: 32px;
+    font-weight: 900;
+}
+
+.card {
+    margin-right: 15px;
+}
+
+.card:last-child {
+    margin-right: 0;
+}
